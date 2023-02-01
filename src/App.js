@@ -24,8 +24,9 @@ function App() {
   const [description, setDescription] = useState('');
   const [products, setProducts] = useState([]);
 
-  console.log(name);
-  console.log(description);
+  //pagination
+  const [currentPage, setCurrentPage] = useState(1);
+  const [productsPerPage, setProductsPerPage] = useState(5);
 
   useEffect(() => {
     getProduct();
@@ -33,10 +34,8 @@ function App() {
 
   async function getProduct() {
     try {
-      const { data, error } = await supabase
-        .from('products')
-        .select('*')
-        .limit(10);
+      const { data, error } = await supabase.from('products').select('*');
+      // .limit(10);
       if (error) throw error;
       if (data != null) {
         setProducts(data); //[product1, product2, product3]
@@ -93,7 +92,7 @@ function App() {
         </Row>
         <hr></hr>
         <h3>List All Products</h3>
-        <Row xs={1} lg={3} className="g-4">
+        <Row  xs={1} lg={1} className="g-4">
           {products.map((product) => (
             <Col>
               <ProductCard product={product} /> {/* product={product} */}

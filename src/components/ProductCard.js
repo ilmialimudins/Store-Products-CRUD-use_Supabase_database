@@ -37,7 +37,7 @@ function ProductCard(props) {
   }
 
   return (
-    <Card style={{ width: '18rem' }}>
+    <Card style={{ width: '18 rem' }}>
       <Card.Body>
         {editing == false ? (
           <>
